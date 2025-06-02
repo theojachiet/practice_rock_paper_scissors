@@ -1,14 +1,23 @@
 let userScore = 0;
 let computerScore = 0;
+let validInput = false;
 
 playRound();
 
 function playRound() {
+
   let userInput = getUserInput();
   let userChoice = getUserChoice(userInput);
+
+  while (!validInput) {
+    let userInput = getUserInput();
+    let userChoice = getUserChoice(userInput);
+  }
+
   let computerChoice = getComputerChoice();
   let result = compareChoices(userChoice, computerChoice);
   updateScore(result);
+
 }
 
 function getComputerChoice() {
@@ -25,12 +34,14 @@ function getComputerChoice() {
 function getUserChoice(input) {
 
   if (input == null || input == undefined) {
-    console.log('You must input a valid option');
+    alert('You must input a valid option (rock, paper, scissors)');
   }
 
   let userChoice = input.toLowerCase();
 
-  if (userChoice != 'rock' || userChoice != 'paper' || userChoice != 'scissors') {
+  if (userChoice === 'rock' || userChoice === 'paper' || userChoice === 'scissors') {
+    validInput = true;
+  } else {
     alert('Please enter a valid option (rock, paper, scissors)');
   }
 
@@ -38,7 +49,7 @@ function getUserChoice(input) {
 }
 
 function getUserInput() {
-  let userInput = prompt('Ready ? Type your choice !');
+  let userInput = prompt('Ready ? Type your choice ! (rock, paper, scissors)');
   return userInput;
 }
 
