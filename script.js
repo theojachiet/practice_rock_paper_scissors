@@ -2,31 +2,37 @@ let userScore = 0;
 let computerScore = 0;
 let validInput = false;
 let playAgain = true;
+let userInput;
+let userChoice;
 
 while (playAgain) {
 
-  while (userScore < 5 || computerScore < 5) {
+  while (userScore < 3 && computerScore < 3) {
     playRound();
   }
 
-  if (userScore === 5) {
+  if (userScore >= 3) {
     alert('You win the game ! Congrats !');
-  } else {
+  } else if (computerScore >= 3) {
     alert('You lose... Better luck next time ?');
   }
 
   playAgain = confirm('Do you want to play another game ? Click OK, if not, click Cancel.');
-  
+  if (playAgain) {
+    userScore = 0;
+    computerScore = 0;
+  }
 }
 
 function playRound() {
 
-  let userInput = getUserInput();
-  let userChoice = getUserChoice(userInput);
+  validInput = false;
+  userInput = getUserInput();
+  userChoice = getUserChoice(userInput);
 
   while (!validInput) {
-    let userInput = getUserInput();
-    let userChoice = getUserChoice(userInput);
+    userInput = getUserInput();
+    userChoice = getUserChoice(userInput);
   }
 
   let computerChoice = getComputerChoice();
@@ -36,7 +42,6 @@ function playRound() {
 
   updateScore(result);
   showResult(result);
-
 }
 
 function getComputerChoice() {
@@ -54,6 +59,7 @@ function getUserChoice(input) {
 
   if (input == null || input == undefined) {
     alert('You must input a valid option (rock, paper, scissors)');
+    return;
   }
 
   let userChoice = input.toLowerCase();
@@ -62,6 +68,7 @@ function getUserChoice(input) {
     validInput = true;
   } else {
     alert('Please enter a valid option (rock, paper, scissors)');
+    return;
   }
 
   return userChoice;
