@@ -17,6 +17,7 @@ function playRound() {
   let computerChoice = getComputerChoice();
   let result = compareChoices(userChoice, computerChoice);
   updateScore(result);
+  showResult(result);
 
 }
 
@@ -79,6 +80,24 @@ function updateScore(result) {
       break;
     case 'computer':
       computerScore++;
+      break;
+  }
+}
+
+function showScore() {
+  return 'Computer[' + computerScore + '] : You['+ userScore + ']';
+}
+
+function showResult(result) {
+  switch (result) {
+    case 'tie':
+      alert('It is a tie ! No one gets points : ' + showScore());
+      break;
+    case 'user':
+      alert('You win ! ' + showScore());
+      break;
+    case 'computer':
+      alert('You lose ! ' + showScore());
       break;
   }
 }
