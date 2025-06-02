@@ -1,8 +1,23 @@
 let userScore = 0;
 let computerScore = 0;
 let validInput = false;
+let playAgain = true;
 
-playRound();
+while (playAgain) {
+
+  while (userScore < 5 || computerScore < 5) {
+    playRound();
+  }
+
+  if (userScore === 5) {
+    alert('You win the game ! Congrats !');
+  } else {
+    alert('You lose... Better luck next time ?');
+  }
+
+  playAgain = confirm('Do you want to play another game ? Click OK, if not, click Cancel.');
+  
+}
 
 function playRound() {
 
@@ -15,7 +30,10 @@ function playRound() {
   }
 
   let computerChoice = getComputerChoice();
+  showChoices(userChoice, computerChoice);
+
   let result = compareChoices(userChoice, computerChoice);
+
   updateScore(result);
   showResult(result);
 
@@ -71,6 +89,10 @@ function compareChoices(userChoice, computerChoice) {
   }
 }
 
+function showChoices(userChoice, computerChoice) {
+  alert('Rock.. Paper.. Scissors... \nYou play ' + userChoice + ', Computer plays ' + computerChoice);
+}
+
 function updateScore(result) {
   switch (result) {
     case 'tie':
@@ -85,7 +107,7 @@ function updateScore(result) {
 }
 
 function showScore() {
-  return 'Computer[' + computerScore + '] : You['+ userScore + ']';
+  return 'Computer[' + computerScore + '] : You[' + userScore + ']';
 }
 
 function showResult(result) {
