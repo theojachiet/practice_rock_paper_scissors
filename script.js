@@ -1,9 +1,6 @@
 //Logic Variables
 let userScore = 0;
 let computerScore = 0;
-let validInput = false;
-let playAgain = true;
-let userInput;
 let userChoice;
 
 //DOM Constants
@@ -21,6 +18,7 @@ const displayComputerScore = document.querySelector('#computerScore');
 const displayRound = document.querySelector('#displayRounds');
 const displayPlayerCurrent = document.querySelector('#playerCurrent');
 const displayComputerCurrent = document.querySelector('#computerCurrent');
+const displayMessage = document.querySelector('#message');
 
 
 //DOM elements
@@ -31,6 +29,8 @@ displayPlayerScore.textContent = userScore;
 rockButton.addEventListener('click', playRound);
 paperButton.addEventListener('click', playRound);
 scissorsButton.addEventListener('click', playRound);
+
+//BO5 Logic
 
 //Commenting out the logic for the rounds System
 // while (playAgain) {
@@ -81,9 +81,20 @@ function playRound() {
   displayPlayerCurrent.textContent = userChoice;
 
   let result = compareChoices(userChoice, computerChoice);
+
   updateScore(result);
   displayComputerScore.textContent = computerScore;
   displayPlayerScore.textContent = userScore;
+
+  if (userScore >= 3) {
+    userScore = 0;
+    computerScore = 0;
+    alert('You win the game ! Congrats !');
+  } else if (computerScore >= 3) {
+    userScore = 0;
+    computerScore = 0;
+    alert('You lose... Better luck next time ?');
+  }
 }
 
 function getComputerChoice() {
@@ -95,30 +106,6 @@ function getComputerChoice() {
   } else {
     return 'scissors';
   }
-}
-
-function getUserChoice(input) {
-
-  if (input == null || input == undefined) {
-    alert('You must input a valid option (rock, paper, scissors)');
-    return;
-  }
-
-  let userChoice = input.toLowerCase();
-
-  if (userChoice === 'rock' || userChoice === 'paper' || userChoice === 'scissors') {
-    validInput = true;
-  } else {
-    alert('Please enter a valid option (rock, paper, scissors)');
-    return;
-  }
-
-  return userChoice;
-}
-
-function getUserInput() {
-  let userInput = prompt('Ready ? Type your choice ! (rock, paper, scissors)');
-  return userInput;
 }
 
 function compareChoices(userChoice, computerChoice) {
@@ -138,37 +125,18 @@ function compareChoices(userChoice, computerChoice) {
   }
 }
 
-function showChoices(userChoice, computerChoice) {
-  alert('Rock.. Paper.. Scissors... \nYou play ' + userChoice + ', Computer plays ' + computerChoice);
-}
-
 function updateScore(result) {
   switch (result) {
     case 'tie':
+      displayMessage.textContent = "It's a tie";
       break;
     case 'user':
+      displayMessage.textContent = "You win the round !";
       userScore++;
       break;
     case 'computer':
+      displayMessage.textContent = "You loose the round";
       computerScore++;
-      break;
-  }
-}
-
-function showScore() {
-  return 'Computer[' + computerScore + '] : You[' + userScore + ']';
-}
-
-function showResult(result) {
-  switch (result) {
-    case 'tie':
-      alert('It is a tie ! No one gets points : ' + showScore());
-      break;
-    case 'user':
-      alert('You win ! ' + showScore());
-      break;
-    case 'computer':
-      alert('You lose ! ' + showScore());
       break;
   }
 }
