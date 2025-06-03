@@ -1,3 +1,4 @@
+//Logic Variables
 let userScore = 0;
 let computerScore = 0;
 let validInput = false;
@@ -5,24 +6,34 @@ let playAgain = true;
 let userInput;
 let userChoice;
 
-while (playAgain) {
+//DOM Elements
+const rockButton = document.querySelector('#rock');
+const paperButton = document.querySelector('#paper');
+const scissorsButton = document.querySelector('#scissors');
 
-  while (userScore < 3 && computerScore < 3) {
-    playRound();
-  }
+rockButton.addEventListener('click', playRound2);
+paperButton.addEventListener('click', playRound2);
+scissorsButton.addEventListener('click', playRound2);
 
-  if (userScore >= 3) {
-    alert('You win the game ! Congrats !');
-  } else if (computerScore >= 3) {
-    alert('You lose... Better luck next time ?');
-  }
+//Commenting out the logic for the rounds System
+// while (playAgain) {
 
-  playAgain = confirm('Do you want to play another game ? Click OK, if not, click Cancel.');
-  if (playAgain) {
-    userScore = 0;
-    computerScore = 0;
-  }
-}
+//   while (userScore < 3 && computerScore < 3) {
+//     playRound();
+//   }
+
+//   if (userScore >= 3) {
+//     alert('You win the game ! Congrats !');
+//   } else if (computerScore >= 3) {
+//     alert('You lose... Better luck next time ?');
+//   }
+
+//   playAgain = confirm('Do you want to play another game ? Click OK, if not, click Cancel.');
+//   if (playAgain) {
+//     userScore = 0;
+//     computerScore = 0;
+//   }
+// }
 
 function playRound() {
 
@@ -42,6 +53,17 @@ function playRound() {
 
   updateScore(result);
   showResult(result);
+}
+
+//Clone function to handle buttons input
+function playRound2() {
+  if (this.id === 'rock') {
+    alert('rock');
+  } else if (this.id === 'paper') {
+    alert('paper');
+  } else {
+    alert('scissors');
+  }
 }
 
 function getComputerChoice() {
