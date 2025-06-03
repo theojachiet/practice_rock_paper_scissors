@@ -8,6 +8,7 @@ let userChoice;
 const rockButton = document.querySelector('#rock');
 const paperButton = document.querySelector('#paper');
 const scissorsButton = document.querySelector('#scissors');
+const reset = document.querySelector('#reset');
 
 //Score
 const resultPanel = document.querySelector('#results');
@@ -20,36 +21,28 @@ const displayPlayerCurrent = document.querySelector('#playerCurrent');
 const displayComputerCurrent = document.querySelector('#computerCurrent');
 const displayMessage = document.querySelector('#message');
 
-
-//DOM elements
-displayComputerScore.textContent = computerScore;
-displayPlayerScore.textContent = userScore;
-
 //Event Listeners
 rockButton.addEventListener('click', playRound);
 paperButton.addEventListener('click', playRound);
 scissorsButton.addEventListener('click', playRound);
+reset.addEventListener('click', resetGame);
 
 function playRound() {
   let userChoice = this.id;
 
   let computerChoice = getComputerChoice();
-  displayComputerCurrent.textContent = computerChoice;
-  displayPlayerCurrent.textContent = userChoice;
-
   let result = compareChoices(userChoice, computerChoice);
 
   updateScore(result);
   displayComputerScore.textContent = computerScore;
   displayPlayerScore.textContent = userScore;
 
+  displayComputerCurrent.textContent = computerChoice;
+  displayPlayerCurrent.textContent = userChoice;
+
   if (userScore >= 3) {
-    userScore = 0;
-    computerScore = 0;
     alert('You win the game ! Congrats !');
   } else if (computerScore >= 3) {
-    userScore = 0;
-    computerScore = 0;
     alert('You lose... Better luck next time ?');
   }
 }
@@ -96,4 +89,11 @@ function updateScore(result) {
       computerScore++;
       break;
   }
+}
+
+function resetGame() {
+    userScore = 0;
+    computerScore = 0;
+    displayComputerScore.textContent = computerScore;
+  displayPlayerScore.textContent = userScore;
 }
