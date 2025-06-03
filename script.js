@@ -30,49 +30,6 @@ rockButton.addEventListener('click', playRound);
 paperButton.addEventListener('click', playRound);
 scissorsButton.addEventListener('click', playRound);
 
-//BO5 Logic
-
-//Commenting out the logic for the rounds System
-// while (playAgain) {
-
-//   while (userScore < 3 && computerScore < 3) {
-//     playRound();
-//   }
-
-//   if (userScore >= 3) {
-//     alert('You win the game ! Congrats !');
-//   } else if (computerScore >= 3) {
-//     alert('You lose... Better luck next time ?');
-//   }
-
-//   playAgain = confirm('Do you want to play another game ? Click OK, if not, click Cancel.');
-//   if (playAgain) {
-//     userScore = 0;
-//     computerScore = 0;
-//   }
-// }
-
-// function playRound() {
-
-//   validInput = false;
-//   userInput = getUserInput();
-//   userChoice = getUserChoice(userInput);
-
-//   while (!validInput) {
-//     userInput = getUserInput();
-//     userChoice = getUserChoice(userInput);
-//   }
-
-//   let computerChoice = getComputerChoice();
-//   showChoices(userChoice, computerChoice);
-
-//   let result = compareChoices(userChoice, computerChoice);
-
-//   updateScore(result);
-//   showResult(result);
-// }
-
-//Clone function to handle buttons input
 function playRound() {
   let userChoice = this.id;
 
