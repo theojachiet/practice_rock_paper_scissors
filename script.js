@@ -6,14 +6,23 @@ let playAgain = true;
 let userInput;
 let userChoice;
 
-//DOM Elements
+//DOM Constants
 const rockButton = document.querySelector('#rock');
 const paperButton = document.querySelector('#paper');
 const scissorsButton = document.querySelector('#scissors');
 
-rockButton.addEventListener('click', playRound2);
-paperButton.addEventListener('click', playRound2);
-scissorsButton.addEventListener('click', playRound2);
+const resultPanel = document.querySelector('#results');
+const displayPlayerScore = document.querySelector('#playerScore');
+const displayComputerScore = document.querySelector('#computerScore');
+
+//DOM elements
+displayComputerScore.textContent = 0;
+displayPlayerScore.textContent = 0;
+
+//Event Listeners
+rockButton.addEventListener('click', playRound);
+paperButton.addEventListener('click', playRound);
+scissorsButton.addEventListener('click', playRound);
 
 //Commenting out the logic for the rounds System
 // while (playAgain) {
@@ -35,28 +44,28 @@ scissorsButton.addEventListener('click', playRound2);
 //   }
 // }
 
-function playRound() {
+// function playRound() {
 
-  validInput = false;
-  userInput = getUserInput();
-  userChoice = getUserChoice(userInput);
+//   validInput = false;
+//   userInput = getUserInput();
+//   userChoice = getUserChoice(userInput);
 
-  while (!validInput) {
-    userInput = getUserInput();
-    userChoice = getUserChoice(userInput);
-  }
+//   while (!validInput) {
+//     userInput = getUserInput();
+//     userChoice = getUserChoice(userInput);
+//   }
 
-  let computerChoice = getComputerChoice();
-  showChoices(userChoice, computerChoice);
+//   let computerChoice = getComputerChoice();
+//   showChoices(userChoice, computerChoice);
 
-  let result = compareChoices(userChoice, computerChoice);
+//   let result = compareChoices(userChoice, computerChoice);
 
-  updateScore(result);
-  showResult(result);
-}
+//   updateScore(result);
+//   showResult(result);
+// }
 
 //Clone function to handle buttons input
-function playRound2() {
+function playRound() {
   if (this.id === 'rock') {
     alert('rock');
   } else if (this.id === 'paper') {
@@ -64,6 +73,8 @@ function playRound2() {
   } else {
     alert('scissors');
   }
+
+  let computerChoice = getComputerChoice();
 }
 
 function getComputerChoice() {
