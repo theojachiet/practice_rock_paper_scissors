@@ -7,17 +7,25 @@ let userInput;
 let userChoice;
 
 //DOM Constants
+//Buttons
 const rockButton = document.querySelector('#rock');
 const paperButton = document.querySelector('#paper');
 const scissorsButton = document.querySelector('#scissors');
 
+//Score
 const resultPanel = document.querySelector('#results');
 const displayPlayerScore = document.querySelector('#playerScore');
 const displayComputerScore = document.querySelector('#computerScore');
 
+//Current round
+const displayRound = document.querySelector('#displayRounds');
+const displayPlayerCurrent = document.querySelector('#playerCurrent');
+const displayComputerCurrent = document.querySelector('#computerCurrent');
+
+
 //DOM elements
-displayComputerScore.textContent = 0;
-displayPlayerScore.textContent = 0;
+displayComputerScore.textContent = computerScore;
+displayPlayerScore.textContent = userScore;
 
 //Event Listeners
 rockButton.addEventListener('click', playRound);
@@ -66,15 +74,16 @@ scissorsButton.addEventListener('click', playRound);
 
 //Clone function to handle buttons input
 function playRound() {
-  if (this.id === 'rock') {
-    alert('rock');
-  } else if (this.id === 'paper') {
-    alert('paper');
-  } else {
-    alert('scissors');
-  }
+  let userChoice = this.id;
 
   let computerChoice = getComputerChoice();
+  displayComputerCurrent.textContent = computerChoice;
+  displayPlayerCurrent.textContent = userChoice;
+
+  let result = compareChoices(userChoice, computerChoice);
+  updateScore(result);
+  displayComputerScore.textContent = computerScore;
+  displayPlayerScore.textContent = userScore;
 }
 
 function getComputerChoice() {
